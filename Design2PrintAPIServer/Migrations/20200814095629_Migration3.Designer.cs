@@ -3,14 +3,16 @@ using System;
 using Design2PrintAPIServer.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Design2PrintAPIServer.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20200814095629_Migration3")]
+    partial class Migration3
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -102,23 +104,6 @@ namespace Design2PrintAPIServer.Migrations
                     b.HasKey("ColorId");
 
                     b.ToTable("color");
-                });
-
-            modelBuilder.Entity("Design2PrintAPIServer.Models.CustomModels.CategoryViewModel", b =>
-                {
-                    b.Property<int>("CategoryId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    b.Property<string>("CategoryDescription")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
-
-                    b.Property<string>("CategoryName")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
-
-                    b.HasKey("CategoryId");
-
-                    b.ToTable("categoryViewModels");
                 });
 
             modelBuilder.Entity("Design2PrintAPIServer.Models.Customer", b =>

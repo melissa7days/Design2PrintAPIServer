@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Design2PrintAPIServer.Data;
 using Design2PrintAPIServer.Models;
+using Design2PrintAPIServer.Models.CustomModels;
 
 namespace Design2PrintAPIServer.Controllers
 {
@@ -28,19 +29,27 @@ namespace Design2PrintAPIServer.Controllers
             return await _context.category.ToListAsync();
         }
 
-        // GET: api/Category/5
-        [HttpGet("{id}")]
-        public async Task<ActionResult<Category>> GetCategory(int id)
+        //http://localhost:55928/api/category/getCategoryById?categoryId=1
+        [HttpGet]
+        [Route("getCategoryById")]
+        public async Task<ActionResult<IEnumerable<CategoryViewModel>>> getCategoryById(int categoryId)
         {
-            var category = await _context.category.FindAsync(id);
-
-            if (category == null)
-            {
-                return NotFound();
-            }
-
-            return category;
+            return await _context.categoryViewModels.FromSqlInterpolated($"CALL getCategoryById({categoryId})").ToListAsync();
+            //return await _context.Tasks.ToListAsync();
         }
+        //// GET: api/Category/5
+        //[HttpGet("{id}")]
+        //public async Task<ActionResult<Category>> GetCategory(int id)
+        //{
+        //    var category = await _context.category.FindAsync(id);
+
+        //    if (category == null)
+        //    {
+        //        return NotFound();
+        //    }
+
+        //    return category;
+        //}
 
         // PUT: api/Category/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for

@@ -34,11 +34,12 @@ namespace Design2PrintAPIServer.Controllers
             return await _context.productViewModels.FromSqlInterpolated($"CALL getAllProducts").ToListAsync();
             //return await _context.Tasks.ToListAsync();
         }
+        //http://localhost:55928/api/product/getProductsById?productTypeId=1
         [HttpGet]
         [Route("getProductsById")]
-        public async Task<ActionResult<IEnumerable<ProductViewModel>>> getProductsById(int productTypeId)
+        public async Task<ActionResult<IEnumerable<ProductByIdViewModel>>> getProductsById(int productTypeId)
         {
-            return await _context.productViewModels.FromSqlInterpolated($"CALL getProductsById {productTypeId}").ToListAsync();
+            return await _context.productByIdViewModels.FromSqlInterpolated($"CALL getProductsById({productTypeId})").ToListAsync();
             //return await _context.Tasks.ToListAsync();
         }
         // GET: api/Product/5
