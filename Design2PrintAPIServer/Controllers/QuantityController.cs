@@ -21,31 +21,23 @@ namespace Design2PrintAPIServer.Controllers
             _context = context;
         }
 
-        // GET: api/Quantity
+        //http://localhost:55928/api/quantity
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Quantity>>> Getquantity()
         {
             return await _context.quantity.ToListAsync();
         }
 
-        // GET: api/Quantity/5
-        [HttpGet("{id}")]
-        public async Task<ActionResult<Quantity>> GetQuantity(int id)
+        //http://localhost:55928/api/quantity/getQuantityById?quantityId=
+        [HttpGet]
+        [Route("getQuantityById")]
+        public async Task<ActionResult<IEnumerable<Quantity>>> getQuantityById(int quantityId)
         {
-            var quantity = await _context.quantity.FindAsync(id);
-
-            if (quantity == null)
-            {
-                return NotFound();
-            }
-
-            return quantity;
+            return await _context.quantity.FromSqlInterpolated($"CALL getQuantityById({quantityId})").ToListAsync();
         }
 
-        // PUT: api/Quantity/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for
-        // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
-        [HttpPut("{id}")]
+        //http://localhost:55928/api/quantity?id=
+        [HttpPut]
         public async Task<IActionResult> PutQuantity(int id, Quantity quantity)
         {
             if (id != quantity.QuantityId)
@@ -74,9 +66,7 @@ namespace Design2PrintAPIServer.Controllers
             return NoContent();
         }
 
-        // POST: api/Quantity
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for
-        // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
+        //http://localhost:55928/api/quantity
         [HttpPost]
         public async Task<ActionResult<Quantity>> PostQuantity(Quantity quantity)
         {
@@ -86,8 +76,8 @@ namespace Design2PrintAPIServer.Controllers
             return CreatedAtAction("GetQuantity", new { id = quantity.QuantityId }, quantity);
         }
 
-        // DELETE: api/Quantity/5
-        [HttpDelete("{id}")]
+        //http://localhost:55928/api/quantity?id=
+        [HttpDelete]
         public async Task<ActionResult<Quantity>> DeleteQuantity(int id)
         {
             var quantity = await _context.quantity.FindAsync(id);
