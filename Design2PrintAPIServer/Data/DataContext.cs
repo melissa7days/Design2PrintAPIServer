@@ -1,5 +1,4 @@
 ﻿using Design2PrintAPIServer.Models;
-using Design2PrintAPIServer.Models.CustomModels;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -50,6 +49,5 @@ namespace Design2PrintAPIServer.Data
         public DbSet<Payment> payment { get; set; }
         public DbSet<ProductViewModel> productViewModels { get; set; }
         public DbSet<ProductByIdViewModel> productByIdViewModels { get; set; }
-        public DbSet<CategoryViewModel> categoryViewModels { get; set; }
     }
 }

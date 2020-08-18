@@ -21,31 +21,23 @@ namespace Design2PrintAPIServer.Controllers
             _context = context;
         }
 
-        // GET: api/ProductType
+        //http://localhost:55928/api/producttype
         [HttpGet]
         public async Task<ActionResult<IEnumerable<ProductType>>> GetproductType()
         {
             return await _context.productType.ToListAsync();
         }
 
-        // GET: api/ProductType/5
-        [HttpGet("{id}")]
-        public async Task<ActionResult<ProductType>> GetProductType(int id)
+        //http://localhost:55928/api/producttype/getProductTypeById?productTypeId=
+        [HttpGet]
+        [Route("getProductTypeById")]
+        public async Task<ActionResult<IEnumerable<ProductType>>> getCategoryById(int productTypeId)
         {
-            var productType = await _context.productType.FindAsync(id);
-
-            if (productType == null)
-            {
-                return NotFound();
-            }
-
-            return productType;
+            return await _context.productType.FromSqlInterpolated($"CALL getProductTypeById({productTypeId})").ToListAsync();
         }
 
-        // PUT: api/ProductType/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for
-        // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
-        [HttpPut("{id}")]
+        //http://localhost:55928/api/producttype?id=
+        [HttpPut]
         public async Task<IActionResult> PutProductType(int id, ProductType productType)
         {
             if (id != productType.ProductTypeId)
@@ -74,9 +66,7 @@ namespace Design2PrintAPIServer.Controllers
             return NoContent();
         }
 
-        // POST: api/ProductType
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for
-        // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
+        //http://localhost:55928/api/producttype
         [HttpPost]
         public async Task<ActionResult<ProductType>> PostProductType(ProductType productType)
         {
@@ -86,8 +76,8 @@ namespace Design2PrintAPIServer.Controllers
             return CreatedAtAction("GetProductType", new { id = productType.ProductTypeId }, productType);
         }
 
-        // DELETE: api/ProductType/5
-        [HttpDelete("{id}")]
+        //http://localhost:55928/api/producttype?id=
+        [HttpDelete]
         public async Task<ActionResult<ProductType>> DeleteProductType(int id)
         {
             var productType = await _context.productType.FindAsync(id);

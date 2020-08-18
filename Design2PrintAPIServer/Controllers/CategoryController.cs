@@ -7,7 +7,6 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Design2PrintAPIServer.Data;
 using Design2PrintAPIServer.Models;
-using Design2PrintAPIServer.Models.CustomModels;
 
 namespace Design2PrintAPIServer.Controllers
 {
@@ -22,39 +21,23 @@ namespace Design2PrintAPIServer.Controllers
             _context = context;
         }
 
-        // GET: api/Category
+        //http://localhost:55928/api/category
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Category>>> Getcategory()
         {
             return await _context.category.ToListAsync();
         }
 
-        //http://localhost:55928/api/category/getCategoryById?categoryId=1
+        //http://localhost:55928/api/category/getCategoryById?categoryId=
         [HttpGet]
         [Route("getCategoryById")]
-        public async Task<ActionResult<IEnumerable<CategoryViewModel>>> getCategoryById(int categoryId)
+        public async Task<ActionResult<IEnumerable<Category>>> getCategoryById(int categoryId)
         {
-            return await _context.categoryViewModels.FromSqlInterpolated($"CALL getCategoryById({categoryId})").ToListAsync();
-            //return await _context.Tasks.ToListAsync();
+            return await _context.category.FromSqlInterpolated($"CALL getCategoryById({categoryId})").ToListAsync();
         }
-        //// GET: api/Category/5
-        //[HttpGet("{id}")]
-        //public async Task<ActionResult<Category>> GetCategory(int id)
-        //{
-        //    var category = await _context.category.FindAsync(id);
 
-        //    if (category == null)
-        //    {
-        //        return NotFound();
-        //    }
-
-        //    return category;
-        //}
-
-        // PUT: api/Category/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for
-        // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
-        [HttpPut("{id}")]
+        //http://localhost:55928/api/category?id=
+        [HttpPut]
         public async Task<IActionResult> PutCategory(int id, Category category)
         {
             if (id != category.CategoryId)
@@ -83,9 +66,7 @@ namespace Design2PrintAPIServer.Controllers
             return NoContent();
         }
 
-        // POST: api/Category
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for
-        // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
+        //http://localhost:55928/api/category
         [HttpPost]
         public async Task<ActionResult<Category>> PostCategory(Category category)
         {
@@ -95,8 +76,8 @@ namespace Design2PrintAPIServer.Controllers
             return CreatedAtAction("GetCategory", new { id = category.CategoryId }, category);
         }
 
-        // DELETE: api/Category/5
-        [HttpDelete("{id}")]
+        //http://localhost:55928/api/category?id=
+        [HttpDelete]
         public async Task<ActionResult<Category>> DeleteCategory(int id)
         {
             var category = await _context.category.FindAsync(id);

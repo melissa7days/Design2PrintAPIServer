@@ -21,45 +21,31 @@ namespace Design2PrintAPIServer.Controllers
             _context = context;
         }
 
-        // GET: api/Product
+        //http://localhost:55928/api/product
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Product>>> Getproduct()
         {
             return await _context.product.ToListAsync();
         }
+
+        //http://localhost:55928/api/product/getAllProducts
         [HttpGet]
         [Route("getAllProducts")]
         public async Task<ActionResult<IEnumerable<ProductViewModel>>> getAllProducts()
         {
             return await _context.productViewModels.FromSqlInterpolated($"CALL getAllProducts").ToListAsync();
-            //return await _context.Tasks.ToListAsync();
         }
-        //http://localhost:55928/api/product/getProductsById?productTypeId=1
+
+        //http://localhost:55928/api/product/getProductsById?productTypeId=
         [HttpGet]
         [Route("getProductsById")]
         public async Task<ActionResult<IEnumerable<ProductByIdViewModel>>> getProductsById(int productTypeId)
         {
             return await _context.productByIdViewModels.FromSqlInterpolated($"CALL getProductsById({productTypeId})").ToListAsync();
-            //return await _context.Tasks.ToListAsync();
         }
-        // GET: api/Product/5
-        //[HttpGet("{id}")]
-        //public async Task<ActionResult<Product>> GetProduct(int id)
-        //{
-        //    var product = await _context.product.FindAsync(id);
 
-        //    if (product == null)
-        //    {
-        //        return NotFound();
-        //    }
-
-        //    return product;
-        //}
-
-        // PUT: api/Product/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for
-        // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
-        [HttpPut("{id}")]
+        //http://localhost:55928/api/product?id=
+        [HttpPut]
         public async Task<IActionResult> PutProduct(int id, Product product)
         {
             if (id != product.ProductId)
@@ -88,9 +74,7 @@ namespace Design2PrintAPIServer.Controllers
             return NoContent();
         }
 
-        // POST: api/Product
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for
-        // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
+        //http://localhost:55928/api/product
         [HttpPost]
         public async Task<ActionResult<Product>> PostProduct(Product product)
         {
@@ -100,8 +84,8 @@ namespace Design2PrintAPIServer.Controllers
             return CreatedAtAction("GetProduct", new { id = product.ProductId }, product);
         }
 
-        // DELETE: api/Product/5
-        [HttpDelete("{id}")]
+        //http://localhost:55928/api/product?id=
+        [HttpDelete]
         public async Task<ActionResult<Product>> DeleteProduct(int id)
         {
             var product = await _context.product.FindAsync(id);
