@@ -8,6 +8,7 @@ namespace Design2PrintAPIServer.Models
 {
     public class ProductViewModel
     {
+        //changed order (delete this comment later on)
         [Key]
         public int ProductId { get; set; }
         public string ProductName { get; set; }
