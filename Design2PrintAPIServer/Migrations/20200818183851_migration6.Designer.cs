@@ -3,14 +3,16 @@ using System;
 using Design2PrintAPIServer.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Design2PrintAPIServer.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20200818183851_migration6")]
+    partial class migration6
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -753,21 +755,21 @@ namespace Design2PrintAPIServer.Migrations
 
             modelBuilder.Entity("Design2PrintAPIServer.Models.ProductViewModel", b =>
                 {
-                    b.Property<int>("ProductId")
+                    b.Property<int>("CategoryId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
                     b.Property<string>("CategoryDescription")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
-                    b.Property<int>("CategoryId")
-                        .HasColumnType("int");
-
                     b.Property<string>("CategoryName")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<double>("ProductBasePrice")
                         .HasColumnType("double");
+
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
 
                     b.Property<string>("ProductImage")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
@@ -781,7 +783,7 @@ namespace Design2PrintAPIServer.Migrations
                     b.Property<string>("ProductTypeName")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
-                    b.HasKey("ProductId");
+                    b.HasKey("CategoryId");
 
                     b.ToTable("productViewModels");
                 });

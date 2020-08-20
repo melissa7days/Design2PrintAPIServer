@@ -10,6 +10,6 @@ namespace Design2PrintAPIServer.Models
     {
         [Key]
         public int QuantityId { get; set; }
-        public string QuantityName { get; set; }
+        public int QuantityName { get; set; }
     }
 }
