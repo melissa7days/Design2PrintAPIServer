@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Design2PrintAPIServer.Migrations
 {
-    public partial class Migration1 : Migration
+    public partial class _1 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -192,6 +192,26 @@ namespace Design2PrintAPIServer.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "productByIdViewModels",
+                columns: table => new
+                {
+                    ProductTypeId = table.Column<int>(nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    ProductTypeName = table.Column<string>(nullable: true),
+                    CategoryId = table.Column<int>(nullable: false),
+                    CategoryName = table.Column<string>(nullable: true),
+                    CategoryDescription = table.Column<string>(nullable: true),
+                    ProductId = table.Column<int>(nullable: false),
+                    ProductName = table.Column<string>(nullable: true),
+                    ProductBasePrice = table.Column<double>(nullable: false),
+                    ProductImage = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_productByIdViewModels", x => x.ProductTypeId);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "productType",
                 columns: table => new
                 {
@@ -202,6 +222,26 @@ namespace Design2PrintAPIServer.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_productType", x => x.ProductTypeId);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "productViewModels",
+                columns: table => new
+                {
+                    ProductId = table.Column<int>(nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    ProductName = table.Column<string>(nullable: true),
+                    ProductBasePrice = table.Column<double>(nullable: false),
+                    ProductImage = table.Column<string>(nullable: true),
+                    CategoryId = table.Column<int>(nullable: false),
+                    CategoryName = table.Column<string>(nullable: true),
+                    CategoryDescription = table.Column<string>(nullable: true),
+                    ProductTypeId = table.Column<int>(nullable: false),
+                    ProductTypeName = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_productViewModels", x => x.ProductId);
                 });
 
             migrationBuilder.CreateTable(
@@ -895,6 +935,9 @@ namespace Design2PrintAPIServer.Migrations
                 name: "payment");
 
             migrationBuilder.DropTable(
+                name: "productByIdViewModels");
+
+            migrationBuilder.DropTable(
                 name: "productTypeBookBinding");
 
             migrationBuilder.DropTable(
@@ -929,6 +972,9 @@ namespace Design2PrintAPIServer.Migrations
 
             migrationBuilder.DropTable(
                 name: "productTypeRefinement");
+
+            migrationBuilder.DropTable(
+                name: "productViewModels");
 
             migrationBuilder.DropTable(
                 name: "order");

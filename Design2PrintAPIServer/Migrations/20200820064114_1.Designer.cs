@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Design2PrintAPIServer.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20200818074633_Migration5")]
-    partial class Migration5
+    [Migration("20200820064114_1")]
+    partial class _1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -755,21 +755,21 @@ namespace Design2PrintAPIServer.Migrations
 
             modelBuilder.Entity("Design2PrintAPIServer.Models.ProductViewModel", b =>
                 {
-                    b.Property<int>("CategoryId")
+                    b.Property<int>("ProductId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
                     b.Property<string>("CategoryDescription")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
+                    b.Property<int>("CategoryId")
+                        .HasColumnType("int");
+
                     b.Property<string>("CategoryName")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<double>("ProductBasePrice")
                         .HasColumnType("double");
-
-                    b.Property<int>("ProductId")
-                        .HasColumnType("int");
 
                     b.Property<string>("ProductImage")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
@@ -783,7 +783,7 @@ namespace Design2PrintAPIServer.Migrations
                     b.Property<string>("ProductTypeName")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
-                    b.HasKey("CategoryId");
+                    b.HasKey("ProductId");
 
                     b.ToTable("productViewModels");
                 });
