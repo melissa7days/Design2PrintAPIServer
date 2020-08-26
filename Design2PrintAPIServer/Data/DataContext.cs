@@ -1,4 +1,5 @@
 ﻿using Design2PrintAPIServer.Models;
+using Design2PrintAPIServer.Models.CustomModels;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -34,7 +35,7 @@ namespace Design2PrintAPIServer.Data
         public DbSet<ProductTypeFinishing> productTypeFinishing { get; set; }
         public DbSet<PDF> pdf { get; set; }
         public DbSet<ProductTypePDF> productTypePDF { get; set; }
-        public DbSet<Option> option { get; set; }
+        public DbSet<Options> option { get; set; }
         public DbSet<ProductTypeOption> productTypeOption { get; set; }
         public DbSet<Pages> pages { get; set; }
         public DbSet<ProductTypePage> productTypePages { get; set; }
@@ -49,5 +50,9 @@ namespace Design2PrintAPIServer.Data
         public DbSet<Payment> payment { get; set; }
         public DbSet<ProductViewModel> productViewModels { get; set; }
         public DbSet<ProductByIdViewModel> productByIdViewModels { get; set; }
+        public DbSet<BookBindingViewModel> bookBindingViewModel { get; set; }
+        public DbSet<ColorViewModel> colorViewModel { get; set; }
+        public DbSet<RefinementViewModel> refinementViewModel { get; set; }
+        public DbSet<OptionsViewModel> optionsViewModel { get; set; }
     }
 }

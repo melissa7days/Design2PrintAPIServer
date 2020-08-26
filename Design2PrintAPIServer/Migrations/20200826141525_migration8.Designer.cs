@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Design2PrintAPIServer.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20200820064114_1")]
-    partial class _1
+    [Migration("20200826141525_migration8")]
+    partial class migration8
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -104,6 +104,84 @@ namespace Design2PrintAPIServer.Migrations
                     b.HasKey("ColorId");
 
                     b.ToTable("color");
+                });
+
+            modelBuilder.Entity("Design2PrintAPIServer.Models.CustomModels.BookBindingViewModel", b =>
+                {
+                    b.Property<int>("ProductTypeBookBindingId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<int>("BookBindingId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("BookBindingName")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<double>("BookBindingPrice")
+                        .HasColumnType("double");
+
+                    b.Property<int>("ProductTypeId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ProductTypeName")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.HasKey("ProductTypeBookBindingId");
+
+                    b.ToTable("bookBindingViewModel");
+                });
+
+            modelBuilder.Entity("Design2PrintAPIServer.Models.CustomModels.ColorViewModel", b =>
+                {
+                    b.Property<int>("ProductTypeColorId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<int>("ColorId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ColorName")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<double>("ColorPrice")
+                        .HasColumnType("double");
+
+                    b.Property<int>("ProductTypeId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ProductTypeName")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.HasKey("ProductTypeColorId");
+
+                    b.ToTable("colorViewModel");
+                });
+
+            modelBuilder.Entity("Design2PrintAPIServer.Models.CustomModels.RefinementViewModel", b =>
+                {
+                    b.Property<int>("ProductTypeRefinementId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<int>("ProductTypeId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ProductTypeName")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<int>("RefinementId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("RefinementName")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<double>("RefinementPrice")
+                        .HasColumnType("double");
+
+                    b.HasKey("ProductTypeRefinementId");
+
+                    b.ToTable("refinementViewModel");
                 });
 
             modelBuilder.Entity("Design2PrintAPIServer.Models.Customer", b =>
@@ -279,7 +357,7 @@ namespace Design2PrintAPIServer.Migrations
                     b.ToTable("material");
                 });
 
-            modelBuilder.Entity("Design2PrintAPIServer.Models.Option", b =>
+            modelBuilder.Entity("Design2PrintAPIServer.Models.Options", b =>
                 {
                     b.Property<int>("OptionId")
                         .ValueGeneratedOnAdd()
@@ -794,8 +872,8 @@ namespace Design2PrintAPIServer.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<string>("QuantityName")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+                    b.Property<int>("QuantityName")
+                        .HasColumnType("int");
 
                     b.HasKey("QuantityId");
 
@@ -1001,7 +1079,7 @@ namespace Design2PrintAPIServer.Migrations
 
             modelBuilder.Entity("Design2PrintAPIServer.Models.ProductTypeOption", b =>
                 {
-                    b.HasOne("Design2PrintAPIServer.Models.Option", "Option")
+                    b.HasOne("Design2PrintAPIServer.Models.Options", "Option")
                         .WithMany()
                         .HasForeignKey("OptionId")
                         .OnDelete(DeleteBehavior.Cascade)

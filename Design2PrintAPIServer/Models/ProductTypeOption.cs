@@ -17,6 +17,6 @@ namespace Design2PrintAPIServer.Models
         public int OptionId { get; set; }
         public double OptionPrice { get; set; }
         public virtual ProductType ProductType { get; set; }
-        public virtual Option Option { get; set; }
+        public virtual Options Option { get; set; }
     }
 }

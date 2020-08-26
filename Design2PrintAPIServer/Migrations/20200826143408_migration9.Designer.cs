@@ -3,14 +3,16 @@ using System;
 using Design2PrintAPIServer.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Design2PrintAPIServer.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20200826143408_migration9")]
+    partial class migration9
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -154,32 +156,6 @@ namespace Design2PrintAPIServer.Migrations
                     b.HasKey("ProductTypeColorId");
 
                     b.ToTable("colorViewModel");
-                });
-
-            modelBuilder.Entity("Design2PrintAPIServer.Models.CustomModels.OptionsViewModel", b =>
-                {
-                    b.Property<int>("ProductTypeOptionId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    b.Property<int>("OptionId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("OptionName")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
-
-                    b.Property<double>("OptionPrice")
-                        .HasColumnType("double");
-
-                    b.Property<int>("ProductTypeId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("ProductTypeName")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
-
-                    b.HasKey("ProductTypeOptionId");
-
-                    b.ToTable("optionsViewModel");
                 });
 
             modelBuilder.Entity("Design2PrintAPIServer.Models.CustomModels.RefinementViewModel", b =>

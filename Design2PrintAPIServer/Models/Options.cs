@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Design2PrintAPIServer.Models
 {
-    public class Option
+    public class Options
     {
         [Key]
         public int OptionId { get; set; }
