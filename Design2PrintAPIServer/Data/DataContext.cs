@@ -42,17 +42,25 @@ namespace Design2PrintAPIServer.Data
         public DbSet<Discount> discount { get; set; }
         public DbSet<ProductTypeDiscount> productTypeDiscount { get; set; }
         public DbSet<Customer> customer { get; set; }
-        public DbSet<CustomerShippingDetails> customerShippingDetails { get; set; }
-        public DbSet<CustomerBillingDetails> customerBillingDetails { get; set; }
+        public DbSet<CustomerShippingDetails> customerShippingDetail { get; set; }
+        public DbSet<CustomerBillingDetails> customerBillingDetail { get; set; }
         public DbSet<Cart> cart { get; set; }
         public DbSet<Order> order { get; set; }
         public DbSet<OrderDetails> orderDetails { get; set; }
         public DbSet<Payment> payment { get; set; }
-        public DbSet<ProductViewModel> productViewModels { get; set; }
-        public DbSet<ProductByIdViewModel> productByIdViewModels { get; set; }
-        public DbSet<BookBindingViewModel> bookBindingViewModel { get; set; }
-        public DbSet<ColorViewModel> colorViewModel { get; set; }
-        public DbSet<RefinementViewModel> refinementViewModel { get; set; }
-        public DbSet<OptionsViewModel> optionsViewModel { get; set; }
+        public DbSet<ProductViewModel> productViewModel { get; set; }
+        public DbSet<ProductByIdViewModel> productByIdViewModel { get; set; }
+        public DbSet<ProductTypeQuantityViewModel> productTypeQuantityViewModel { get; set; }
+        public DbSet<ProductTypeDesignServiceViewModel> productTypeDesignServiceViewModel { get; set; }
+        public DbSet<ProductTypeFinishedFormatViewModel> productTypeFinishedFormatViewModel { get; set; }
+        public DbSet<ProductTypeMaterialViewModel> productTypeMaterialViewModel { get; set; }
+        public DbSet<ProductTypeColorViewModel> productTypeColorViewModel { get; set; }
+        public DbSet<ProductTypeRefinementViewModel> productTypeRefinementViewModel { get; set; }
+        public DbSet<ProductTypeBookBindingViewModel> productTypeBookBindingViewModel { get; set; }
+        public DbSet<ProductTypeFinishingViewModel> productTypeFinishingViewModel { get; set; }
+        public DbSet<ProductTypePDFViewModel> productTypePDFViewModel { get; set; }
+        public DbSet<ProductTypeOptionsViewModel> productTypeOptionsViewModel { get; set; }
+        public DbSet<ProductTypePageViewModel> productTypePageViewModel { get; set; }
+        public DbSet<ProductTypeDiscountViewModel> productTypeDiscountViewModels { get; set; }
     }
 }

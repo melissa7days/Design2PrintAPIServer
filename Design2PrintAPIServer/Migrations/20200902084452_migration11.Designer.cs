@@ -3,14 +3,16 @@ using System;
 using Design2PrintAPIServer.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Design2PrintAPIServer.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20200902084452_migration11")]
+    partial class migration11
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -104,7 +106,7 @@ namespace Design2PrintAPIServer.Migrations
                     b.ToTable("color");
                 });
 
-            modelBuilder.Entity("Design2PrintAPIServer.Models.CustomModels.ProductTypeBookBindingViewModel", b =>
+            modelBuilder.Entity("Design2PrintAPIServer.Models.CustomModels.BookBindingViewModel", b =>
                 {
                     b.Property<int>("ProductTypeBookBindingId")
                         .ValueGeneratedOnAdd()
@@ -127,10 +129,10 @@ namespace Design2PrintAPIServer.Migrations
 
                     b.HasKey("ProductTypeBookBindingId");
 
-                    b.ToTable("productTypeBookBindingViewModel");
+                    b.ToTable("bookBindingViewModel");
                 });
 
-            modelBuilder.Entity("Design2PrintAPIServer.Models.CustomModels.ProductTypeColorViewModel", b =>
+            modelBuilder.Entity("Design2PrintAPIServer.Models.CustomModels.ColorViewModel", b =>
                 {
                     b.Property<int>("ProductTypeColorId")
                         .ValueGeneratedOnAdd()
@@ -153,140 +155,10 @@ namespace Design2PrintAPIServer.Migrations
 
                     b.HasKey("ProductTypeColorId");
 
-                    b.ToTable("productTypeColorViewModel");
+                    b.ToTable("colorViewModel");
                 });
 
-            modelBuilder.Entity("Design2PrintAPIServer.Models.CustomModels.ProductTypeDesignServiceViewModel", b =>
-                {
-                    b.Property<int>("ProductTypeDesignServiceId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    b.Property<int>("DesignServiceId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("DesignServiceName")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
-
-                    b.Property<double>("DesignServicePrice")
-                        .HasColumnType("double");
-
-                    b.Property<int>("ProductTypeId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("ProductTypeName")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
-
-                    b.HasKey("ProductTypeDesignServiceId");
-
-                    b.ToTable("productTypeDesignServiceViewModel");
-                });
-
-            modelBuilder.Entity("Design2PrintAPIServer.Models.CustomModels.ProductTypeDiscountViewModel", b =>
-                {
-                    b.Property<int>("ProductTypeDiscountId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    b.Property<int>("DiscountId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("DiscountName")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
-
-                    b.Property<double>("DiscountPrice")
-                        .HasColumnType("double");
-
-                    b.Property<int>("ProductTypeId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("ProductTypeName")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
-
-                    b.HasKey("ProductTypeDiscountId");
-
-                    b.ToTable("productTypeDiscountViewModels");
-                });
-
-            modelBuilder.Entity("Design2PrintAPIServer.Models.CustomModels.ProductTypeFinishedFormatViewModel", b =>
-                {
-                    b.Property<int>("ProductTypeFinishedFormatId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    b.Property<int>("FinishedFormatId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("FinishedFormatName")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
-
-                    b.Property<double>("FinishedFormatPrice")
-                        .HasColumnType("double");
-
-                    b.Property<int>("ProductTypeId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("ProductTypeName")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
-
-                    b.HasKey("ProductTypeFinishedFormatId");
-
-                    b.ToTable("productTypeFinishedFormatViewModel");
-                });
-
-            modelBuilder.Entity("Design2PrintAPIServer.Models.CustomModels.ProductTypeFinishingViewModel", b =>
-                {
-                    b.Property<int>("ProductTypeFinishingId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    b.Property<int>("FinishingId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("FinishingName")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
-
-                    b.Property<double>("FinishingPrice")
-                        .HasColumnType("double");
-
-                    b.Property<int>("ProductTypeId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("ProductTypeName")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
-
-                    b.HasKey("ProductTypeFinishingId");
-
-                    b.ToTable("productTypeFinishingViewModel");
-                });
-
-            modelBuilder.Entity("Design2PrintAPIServer.Models.CustomModels.ProductTypeMaterialViewModel", b =>
-                {
-                    b.Property<int>("ProductTypeMaterialId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    b.Property<int>("MaterialId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("MaterialName")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
-
-                    b.Property<double>("MaterialPrice")
-                        .HasColumnType("double");
-
-                    b.Property<int>("ProductTypeId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("ProductTypeName")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
-
-                    b.HasKey("ProductTypeMaterialId");
-
-                    b.ToTable("productTypeMaterialViewModel");
-                });
-
-            modelBuilder.Entity("Design2PrintAPIServer.Models.CustomModels.ProductTypeOptionsViewModel", b =>
+            modelBuilder.Entity("Design2PrintAPIServer.Models.CustomModels.OptionsViewModel", b =>
                 {
                     b.Property<int>("ProductTypeOptionId")
                         .ValueGeneratedOnAdd()
@@ -309,59 +181,7 @@ namespace Design2PrintAPIServer.Migrations
 
                     b.HasKey("ProductTypeOptionId");
 
-                    b.ToTable("productTypeOptionsViewModel");
-                });
-
-            modelBuilder.Entity("Design2PrintAPIServer.Models.CustomModels.ProductTypePDFViewModel", b =>
-                {
-                    b.Property<int>("ProductTypePDFId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    b.Property<int>("PDFId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("PDFName")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
-
-                    b.Property<double>("PDFPrice")
-                        .HasColumnType("double");
-
-                    b.Property<int>("ProductTypeId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("ProductTypeName")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
-
-                    b.HasKey("ProductTypePDFId");
-
-                    b.ToTable("productTypePDFViewModel");
-                });
-
-            modelBuilder.Entity("Design2PrintAPIServer.Models.CustomModels.ProductTypePageViewModel", b =>
-                {
-                    b.Property<int>("ProductTypePageId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    b.Property<int>("PageId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("PageName")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
-
-                    b.Property<double>("PagePrice")
-                        .HasColumnType("double");
-
-                    b.Property<int>("ProductTypeId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("ProductTypeName")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
-
-                    b.HasKey("ProductTypePageId");
-
-                    b.ToTable("productTypePageViewModel");
+                    b.ToTable("optionsViewModel");
                 });
 
             modelBuilder.Entity("Design2PrintAPIServer.Models.CustomModels.ProductTypeQuantityViewModel", b =>
@@ -384,10 +204,10 @@ namespace Design2PrintAPIServer.Migrations
 
                     b.HasKey("ProductTypeQuantityId");
 
-                    b.ToTable("productTypeQuantityViewModel");
+                    b.ToTable("productTypeQuantityViewModels");
                 });
 
-            modelBuilder.Entity("Design2PrintAPIServer.Models.CustomModels.ProductTypeRefinementViewModel", b =>
+            modelBuilder.Entity("Design2PrintAPIServer.Models.CustomModels.RefinementViewModel", b =>
                 {
                     b.Property<int>("ProductTypeRefinementId")
                         .ValueGeneratedOnAdd()
@@ -410,7 +230,7 @@ namespace Design2PrintAPIServer.Migrations
 
                     b.HasKey("ProductTypeRefinementId");
 
-                    b.ToTable("productTypeRefinementViewModel");
+                    b.ToTable("refinementViewModel");
                 });
 
             modelBuilder.Entity("Design2PrintAPIServer.Models.Customer", b =>
@@ -478,7 +298,7 @@ namespace Design2PrintAPIServer.Migrations
 
                     b.HasKey("CustomerBillingDetailsId");
 
-                    b.ToTable("customerBillingDetail");
+                    b.ToTable("customerBillingDetails");
                 });
 
             modelBuilder.Entity("Design2PrintAPIServer.Models.CustomerShippingDetails", b =>
@@ -513,7 +333,7 @@ namespace Design2PrintAPIServer.Migrations
 
                     b.HasKey("CustomerShippingDetailsId");
 
-                    b.ToTable("customerShippingDetail");
+                    b.ToTable("customerShippingDetails");
                 });
 
             modelBuilder.Entity("Design2PrintAPIServer.Models.DesignService", b =>
@@ -758,7 +578,7 @@ namespace Design2PrintAPIServer.Migrations
 
                     b.HasKey("ProductTypeId");
 
-                    b.ToTable("productByIdViewModel");
+                    b.ToTable("productByIdViewModels");
                 });
 
             modelBuilder.Entity("Design2PrintAPIServer.Models.ProductType", b =>
@@ -1092,7 +912,7 @@ namespace Design2PrintAPIServer.Migrations
 
                     b.HasKey("ProductId");
 
-                    b.ToTable("productViewModel");
+                    b.ToTable("productViewModels");
                 });
 
             modelBuilder.Entity("Design2PrintAPIServer.Models.Quantity", b =>

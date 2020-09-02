@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Design2PrintAPIServer.Data;
 using Design2PrintAPIServer.Models;
+using Design2PrintAPIServer.Models.CustomModels;
 
 namespace Design2PrintAPIServer.Controllers
 {

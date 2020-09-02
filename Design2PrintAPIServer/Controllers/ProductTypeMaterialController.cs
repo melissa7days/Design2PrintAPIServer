@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Design2PrintAPIServer.Data;
 using Design2PrintAPIServer.Models;
+using Design2PrintAPIServer.Models.CustomModels;
 
 namespace Design2PrintAPIServer.Controllers
 {
@@ -31,9 +32,9 @@ namespace Design2PrintAPIServer.Controllers
         //http://localhost:55928/api/productTypeMaterial/getProMaterialById?materialId=
         [HttpGet]
         [Route("getProMaterialById")]
-        public async Task<ActionResult<IEnumerable<ProductTypeMaterial>>> getProMaterialById(int materialId)
+        public async Task<ActionResult<IEnumerable<ProductTypeMaterialViewModel>>> getProMaterialById(int materialId)
         {
-            return await _context.productTypeMaterial.FromSqlInterpolated($"CALL getProMaterialById({materialId})").ToListAsync();
+            return await _context.productTypeMaterialViewModel.FromSqlInterpolated($"CALL getProMaterialById({materialId})").ToListAsync();
         }
 
         //http://localhost:55928/api/productTypeMaterial?id=

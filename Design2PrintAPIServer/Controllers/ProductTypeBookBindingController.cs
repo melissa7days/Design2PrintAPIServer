@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Design2PrintAPIServer.Data;
 using Design2PrintAPIServer.Models;
+using Design2PrintAPIServer.Models.CustomModels;
 
 namespace Design2PrintAPIServer.Controllers
 {
@@ -31,9 +32,9 @@ namespace Design2PrintAPIServer.Controllers
         //http://localhost:55928/api/productTypeBookBinding/getProBookBindingById?bookBindingId=
         [HttpGet]
         [Route("getProBookBindingById")]
-        public async Task<ActionResult<IEnumerable<ProductTypeBookBinding>>> getProBookBindingById(int bookBindingId)
+        public async Task<ActionResult<IEnumerable<ProductTypeBookBindingViewModel>>> getProBookBindingById(int bookBindingId)
         {
-            return await _context.productTypeBookBinding.FromSqlInterpolated($"CALL getProBookBindingById({bookBindingId})").ToListAsync();
+            return await _context.productTypeBookBindingViewModel.FromSqlInterpolated($"CALL getProBookBindingById({bookBindingId})").ToListAsync();
         }
 
         //http://localhost:55928/api/productTypeBookBinding?id=

@@ -6,13 +6,14 @@ using System.Threading.Tasks;
 
 namespace Design2PrintAPIServer.Models.CustomModels
 {
-    public class QuantityViewModel
+    public class ProductTypeRefinementViewModel
     {
         [Key]
-        public int ProductTypeQuantityId { get; set; }
+        public int ProductTypeRefinementId { get; set; }
+        public double RefinementPrice { get; set; }
         public int ProductTypeId { get; set; }
         public string ProductTypeName { get; set; }
-        public int QuantityId { get; set; }
-        public int QuantityName { get; set; }
+        public int RefinementId { get; set; }
+        public string RefinementName { get; set; }
     }
 }

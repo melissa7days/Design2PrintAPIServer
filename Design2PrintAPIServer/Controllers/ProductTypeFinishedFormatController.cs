@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Design2PrintAPIServer.Data;
 using Design2PrintAPIServer.Models;
+using Design2PrintAPIServer.Models.CustomModels;
 
 namespace Design2PrintAPIServer.Controllers
 {
@@ -31,9 +32,9 @@ namespace Design2PrintAPIServer.Controllers
         //http://localhost:55928/api/productTypeFinishedFormat/getProFinishedFormatById?finishedFormatId=
         [HttpGet]
         [Route("getProFinishedFormatById")]
-        public async Task<ActionResult<IEnumerable<ProductTypeFinishedFormat>>> getProFinishedFormatById(int finishedFormatId)
+        public async Task<ActionResult<IEnumerable<ProductTypeFinishedFormatViewModel>>> getProFinishedFormatById(int finishedFormatId)
         {
-            return await _context.productTypeFinishedFormat.FromSqlInterpolated($"CALL getProFinishedFormatById({finishedFormatId})").ToListAsync();
+            return await _context.productTypeFinishedFormatViewModel.FromSqlInterpolated($"CALL getProFinishedFormatById({finishedFormatId})").ToListAsync();
         }
 
         //http://localhost:55928/api/productTypeFinishedFormat?id=

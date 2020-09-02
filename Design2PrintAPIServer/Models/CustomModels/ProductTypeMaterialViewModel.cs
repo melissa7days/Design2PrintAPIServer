@@ -6,14 +6,14 @@ using System.Threading.Tasks;
 
 namespace Design2PrintAPIServer.Models.CustomModels
 {
-    public class PDFViewModel
+    public class ProductTypeMaterialViewModel
     {
         [Key]
-        public int ProductTypePDFId { get; set; }
-        public double PDFPrice { get; set; }
+        public int ProductTypeMaterialId { get; set; }
+        public double MaterialPrice { get; set; }
         public int ProductTypeId { get; set; }
         public string ProductTypeName { get; set; }
-        public int PDFId { get; set; }
-        public string PDFName { get; set; }
+        public int MaterialId { get; set; }
+        public string MaterialName { get; set; }
     }
 }

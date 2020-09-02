@@ -33,7 +33,7 @@ namespace Design2PrintAPIServer.Controllers
         [Route("getAllProducts")]
         public async Task<ActionResult<IEnumerable<ProductViewModel>>> getAllProducts()
         {
-            return await _context.productViewModels.FromSqlInterpolated($"CALL getAllProducts").ToListAsync();
+            return await _context.productViewModel.FromSqlInterpolated($"CALL getAllProducts").ToListAsync();
         }
 
         //http://localhost:55928/api/product/getProductsById?productId=
@@ -41,7 +41,7 @@ namespace Design2PrintAPIServer.Controllers
         [Route("getProductsById")]
         public async Task<ActionResult<IEnumerable<ProductByIdViewModel>>> getProductsById(int productId)
         {
-            return await _context.productByIdViewModels.FromSqlInterpolated($"CALL getProductsById({productId})").ToListAsync();
+            return await _context.productByIdViewModel.FromSqlInterpolated($"CALL getProductsById({productId})").ToListAsync();
         }
 
         //http://localhost:55928/api/product?id=
