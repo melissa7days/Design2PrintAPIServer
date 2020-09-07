@@ -29,12 +29,20 @@ namespace Design2PrintAPIServer.Controllers
             return await _context.productTypePDF.ToListAsync();
         }
 
-        //http://localhost:55928/api/productTypePDF/getProPDFById?pdfId=
+        //http://localhost:55928/api/productTypePDF/getAllProductTypePDFs
+        [HttpGet]
+        [Route("getAllProductTypePDFs")]
+        public async Task<ActionResult<IEnumerable<ProductTypePDFViewModel>>> getAllProductTypePDFs()
+        {
+            return await _context.productTypePDFViewModel.FromSqlInterpolated($"CALL getAllProductTypePDFs").ToListAsync();
+        }
+
+        //http://localhost:55928/api/productTypePDF/getProPDFById?productTypePDFId=
         [HttpGet]
         [Route("getProPDFById")]
-        public async Task<ActionResult<IEnumerable<ProductTypePDFViewModel>>> getProPDFById(int pdfId)
+        public async Task<ActionResult<IEnumerable<ProductTypePDFViewModel>>> getProPDFById(int productTypePDFId)
         {
-            return await _context.productTypePDFViewModel.FromSqlInterpolated($"CALL getProPDFById({pdfId})").ToListAsync();
+            return await _context.productTypePDFViewModel.FromSqlInterpolated($"CALL getProPDFById({productTypePDFId})").ToListAsync();
         }
 
         //http://localhost:55928/api/productTypePDF?id=

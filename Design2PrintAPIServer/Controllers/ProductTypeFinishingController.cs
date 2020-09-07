@@ -29,12 +29,20 @@ namespace Design2PrintAPIServer.Controllers
             return await _context.productTypeFinishing.ToListAsync();
         }
 
-        //http://localhost:55928/api/productTypeFinishing/getProFinishingById?finishingId=
+        //http://localhost:55928/api/productTypeFinishing/getAllProductTypeFinishings
+        [HttpGet]
+        [Route("getAllProductTypeFinishings")]
+        public async Task<ActionResult<IEnumerable<ProductTypeFinishingViewModel>>> getAllProductTypeFinishings()
+        {
+            return await _context.productTypeFinishingViewModel.FromSqlInterpolated($"CALL getAllProductTypeFinishings").ToListAsync();
+        }
+
+        //http://localhost:55928/api/productTypeFinishing/getProFinishingById?productTypeFinishingId=
         [HttpGet]
         [Route("getProFinishingById")]
-        public async Task<ActionResult<IEnumerable<ProductTypeFinishingViewModel>>> getProFinishingById(int finishingId)
+        public async Task<ActionResult<IEnumerable<ProductTypeFinishingViewModel>>> getProFinishingById(int productTypeFinishingId)
         {
-            return await _context.productTypeFinishingViewModel.FromSqlInterpolated($"CALL getProFinishingById({finishingId})").ToListAsync();
+            return await _context.productTypeFinishingViewModel.FromSqlInterpolated($"CALL getProFinishingById({productTypeFinishingId})").ToListAsync();
         }
 
         //http://localhost:55928/api/productTypeFinishing?id=

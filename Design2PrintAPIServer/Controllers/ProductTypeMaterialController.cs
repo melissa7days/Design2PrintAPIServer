@@ -29,12 +29,20 @@ namespace Design2PrintAPIServer.Controllers
             return await _context.productTypeMaterial.ToListAsync();
         }
 
-        //http://localhost:55928/api/productTypeMaterial/getProMaterialById?materialId=
+        //http://localhost:55928/api/productTypeMaterial/getAllProductTypeMaterials
+        [HttpGet]
+        [Route("getAllProductTypeMaterials")]
+        public async Task<ActionResult<IEnumerable<ProductTypeMaterialViewModel>>> getAllProductTypeMaterials()
+        {
+            return await _context.productTypeMaterialViewModel.FromSqlInterpolated($"CALL getAllProductTypeMaterials").ToListAsync();
+        }
+
+        //http://localhost:55928/api/productTypeMaterial/getProMaterialById?productTypeMaterialId=
         [HttpGet]
         [Route("getProMaterialById")]
-        public async Task<ActionResult<IEnumerable<ProductTypeMaterialViewModel>>> getProMaterialById(int materialId)
+        public async Task<ActionResult<IEnumerable<ProductTypeMaterialViewModel>>> getProMaterialById(int productTypeMaterialId)
         {
-            return await _context.productTypeMaterialViewModel.FromSqlInterpolated($"CALL getProMaterialById({materialId})").ToListAsync();
+            return await _context.productTypeMaterialViewModel.FromSqlInterpolated($"CALL getProMaterialById({productTypeMaterialId})").ToListAsync();
         }
 
         //http://localhost:55928/api/productTypeMaterial?id=

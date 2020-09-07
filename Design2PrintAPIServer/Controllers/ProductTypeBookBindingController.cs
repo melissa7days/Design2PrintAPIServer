@@ -29,12 +29,21 @@ namespace Design2PrintAPIServer.Controllers
             return await _context.productTypeBookBinding.ToListAsync();
         }
 
-        //http://localhost:55928/api/productTypeBookBinding/getProBookBindingById?bookBindingId=
+        //http://localhost:55928/api/productTypeBookBinding/getAllProductTypeBookBindings
+        [HttpGet]
+        [Route("getAllProductTypeBookBindings")]
+        public async Task<ActionResult<IEnumerable<ProductTypeBookBindingViewModel>>> getAllProductTypeBookBindings()
+        {
+            return await _context.productTypeBookBindingViewModel.FromSqlInterpolated($"CALL getAllProductTypeBookBindings").ToListAsync();
+        }
+
+
+        //http://localhost:55928/api/productTypeBookBinding/getProBookBindingById?productTypeBookBindingId=
         [HttpGet]
         [Route("getProBookBindingById")]
-        public async Task<ActionResult<IEnumerable<ProductTypeBookBindingViewModel>>> getProBookBindingById(int bookBindingId)
+        public async Task<ActionResult<IEnumerable<ProductTypeBookBindingViewModel>>> getProBookBindingById(int productTypeBookBindingId)
         {
-            return await _context.productTypeBookBindingViewModel.FromSqlInterpolated($"CALL getProBookBindingById({bookBindingId})").ToListAsync();
+            return await _context.productTypeBookBindingViewModel.FromSqlInterpolated($"CALL getProBookBindingById({productTypeBookBindingId})").ToListAsync();
         }
 
         //http://localhost:55928/api/productTypeBookBinding?id=

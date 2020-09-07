@@ -29,12 +29,21 @@ namespace Design2PrintAPIServer.Controllers
             return await _context.productTypeColor.ToListAsync();
         }
 
-        //http://localhost:55928/api/productTypeColor/getProColorById?colorId=
+        //http://localhost:55928/api/productTypeColor/getAllProductTypeColors
+        [HttpGet]
+        [Route("getAllProductTypeColors")]
+        public async Task<ActionResult<IEnumerable<ProductTypeColorViewModel>>> getAllProductTypeColors()
+        {
+            return await _context.productTypeColorViewModel.FromSqlInterpolated($"CALL getAllProductTypeColors").ToListAsync();
+        }
+
+
+        //http://localhost:55928/api/productTypeColor/getProColorById?productTypeColorId=
         [HttpGet]
         [Route("getProColorById")]
-        public async Task<ActionResult<IEnumerable<ProductTypeColorViewModel>>> getProColorById(int colorId)
+        public async Task<ActionResult<IEnumerable<ProductTypeColorViewModel>>> getProColorById(int productTypeColorId)
         {
-            return await _context.productTypeColorViewModel.FromSqlInterpolated($"CALL getProColorById({colorId})").ToListAsync();
+            return await _context.productTypeColorViewModel.FromSqlInterpolated($"CALL getProColorById({productTypeColorId})").ToListAsync();
         }
 
         //http://localhost:55928/api/productTypeColor?id=

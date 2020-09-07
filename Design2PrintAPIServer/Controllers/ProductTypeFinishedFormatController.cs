@@ -29,12 +29,20 @@ namespace Design2PrintAPIServer.Controllers
             return await _context.productTypeFinishedFormat.ToListAsync();
         }
 
-        //http://localhost:55928/api/productTypeFinishedFormat/getProFinishedFormatById?finishedFormatId=
+        //http://localhost:55928/api/productTypeFinishedFormat/getAllProductTypeFinishedFormats
+        [HttpGet]
+        [Route("getAllProductTypeFinishedFormats")]
+        public async Task<ActionResult<IEnumerable<ProductTypeFinishedFormatViewModel>>> getAllProductTypeFinishedFormats()
+        {
+            return await _context.productTypeFinishedFormatViewModel.FromSqlInterpolated($"CALL getAllProductTypeFinishedFormats").ToListAsync();
+        }
+
+        //http://localhost:55928/api/productTypeFinishedFormat/getProFinishedFormatById?productTypeFinishedFormatId=
         [HttpGet]
         [Route("getProFinishedFormatById")]
-        public async Task<ActionResult<IEnumerable<ProductTypeFinishedFormatViewModel>>> getProFinishedFormatById(int finishedFormatId)
+        public async Task<ActionResult<IEnumerable<ProductTypeFinishedFormatViewModel>>> getProFinishedFormatById(int productTypeFinishedFormatId)
         {
-            return await _context.productTypeFinishedFormatViewModel.FromSqlInterpolated($"CALL getProFinishedFormatById({finishedFormatId})").ToListAsync();
+            return await _context.productTypeFinishedFormatViewModel.FromSqlInterpolated($"CALL getProFinishedFormatById({productTypeFinishedFormatId})").ToListAsync();
         }
 
         //http://localhost:55928/api/productTypeFinishedFormat?id=

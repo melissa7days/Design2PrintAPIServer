@@ -29,12 +29,20 @@ namespace Design2PrintAPIServer.Controllers
             return await _context.productTypeRefinement.ToListAsync();
         }
 
-        //http://localhost:55928/api/productTypeRefinement/getProRefinementById?refinementId=
+        //http://localhost:55928/api/productTypeRefinement/getAllProductTypeRefinements
+        [HttpGet]
+        [Route("getAllProductTypeRefinements")]
+        public async Task<ActionResult<IEnumerable<ProductTypeRefinementViewModel>>> getAllProductTypeRefinements()
+        {
+            return await _context.productTypeRefinementViewModel.FromSqlInterpolated($"CALL getAllProductTypeRefinements").ToListAsync();
+        }
+
+        //http://localhost:55928/api/productTypeRefinement/getProRefinementById?productTypeRefinementId=
         [HttpGet]
         [Route("getProRefinementById")]
-        public async Task<ActionResult<IEnumerable<ProductTypeRefinementViewModel>>> getProRefinementById(int refinementId)
+        public async Task<ActionResult<IEnumerable<ProductTypeRefinementViewModel>>> getProRefinementById(int productTypeRefinementId)
         {
-            return await _context.productTypeRefinementViewModel.FromSqlInterpolated($"CALL getProRefinementById({refinementId})").ToListAsync();
+            return await _context.productTypeRefinementViewModel.FromSqlInterpolated($"CALL getProRefinementById({productTypeRefinementId})").ToListAsync();
         }
 
         //http://localhost:55928/api/productTypeRefinement?id=

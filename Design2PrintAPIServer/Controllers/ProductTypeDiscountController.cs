@@ -29,12 +29,20 @@ namespace Design2PrintAPIServer.Controllers
             return await _context.productTypeDiscount.ToListAsync();
         }
 
-        //http://localhost:55928/api/productTypeDiscount/getProDiscountById?discountId=
+        //http://localhost:55928/api/productTypeDiscount/getAllProductTypeDiscounts
+        [HttpGet]
+        [Route("getAllProductTypeDiscounts")]
+        public async Task<ActionResult<IEnumerable<ProductTypeDiscountViewModel>>> getAllProductTypeDiscounts()
+        {
+            return await _context.productTypeDiscountViewModels.FromSqlInterpolated($"CALL getAllProductTypeDiscounts").ToListAsync();
+        }
+
+        //http://localhost:55928/api/productTypeDiscount/getProDiscountById?productTypeDiscountId=
         [HttpGet]
         [Route("getProDiscountById")]
-        public async Task<ActionResult<IEnumerable<ProductTypeDiscountViewModel>>> getProDiscountById(int discountId)
+        public async Task<ActionResult<IEnumerable<ProductTypeDiscountViewModel>>> getProDiscountById(int productTypeDiscountId)
         {
-            return await _context.productTypeDiscountViewModels.FromSqlInterpolated($"CALL getProDiscountById({discountId})").ToListAsync();
+            return await _context.productTypeDiscountViewModels.FromSqlInterpolated($"CALL getProDiscountById({productTypeDiscountId})").ToListAsync();
         }
 
         //http://localhost:55928/api/productTypeDiscount?id=

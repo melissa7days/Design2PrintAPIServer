@@ -29,12 +29,20 @@ namespace Design2PrintAPIServer.Controllers
             return await _context.productTypeQuantity.ToListAsync();
         }
 
-        //http://localhost:55928/api/productTypeQuantity/getProQuantityById?quantityId=
+        //http://localhost:55928/api/productTypeQuantity/getAllProductTypeQuantity
+        [HttpGet]
+        [Route("getAllProductTypeQuantity")]
+        public async Task<ActionResult<IEnumerable<ProductTypeQuantityViewModel>>> getAllProductTypeQuantity()
+        {
+            return await _context.productTypeQuantityViewModel.FromSqlInterpolated($"CALL getAllProductTypeQuantity").ToListAsync();
+        }
+
+        //http://localhost:55928/api/productTypeQuantity/getProQuantityById?productTypeQuantityId=
         [HttpGet]
         [Route("getProQuantityById")]
-        public async Task<ActionResult<IEnumerable<ProductTypeQuantityViewModel>>> getProQuantityById(int quantityId)
+        public async Task<ActionResult<IEnumerable<ProductTypeQuantityViewModel>>> getProQuantityById(int productTypeQuantityId)
         {
-            return await _context.productTypeQuantityViewModel.FromSqlInterpolated($"CALL getProQuantityById({quantityId})").ToListAsync();
+            return await _context.productTypeQuantityViewModel.FromSqlInterpolated($"CALL getProQuantityById({productTypeQuantityId})").ToListAsync();
         }
 
         //http://localhost:55928/api/productTypeQuantity?id=
